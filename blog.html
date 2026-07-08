@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Hemraj Patel</title>
+  <meta name="description" content="Hemraj Patel's blog on cybersecurity, research, resilience, and growth.">
+  <meta name="theme-color" content="#134563">
+  <meta property="og:title" content="Blog — Hemraj Patel">
+  <meta property="og:description" content="Hemraj Patel's blog on cybersecurity, research, resilience, and growth.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hemraj Patel">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Blog — Hemraj Patel">
+  <meta name="twitter:description" content="Hemraj Patel's blog on cybersecurity, research, resilience, and growth.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23081521'/%3E%3Cpath d='M32 8 L52 15 V30 C52 44 43 52 32 56 C21 52 12 44 12 30 V15 Z' fill='none' stroke='%236fd8c6' stroke-width='3.5' stroke-linejoin='round'/%3E%3Cpath d='M23 31 L29 37 L42 24' fill='none' stroke='%23d8b26c' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ui.css">
+</head>
+<body>
+  <div class="loader">
+    <div class="loader-text">HEMRAJ</div>
+    <div class="loader-bar"></div>
+  </div>
+
+  <canvas id="caustics-canvas" aria-hidden="true"></canvas>
+
+<nav class="navbar">
+    <a href="./" class="nav-logo">HEMRAJ</a>
+    <ul class="nav-links">
+      <li><a href="./">Home</a></li>
+      <li><a href="about">About</a></li>
+      <li><a href="experience">Experience</a></li>
+      <li><a href="projects">Projects</a></li>
+      <li><a href="blog" class="active">Blog</a></li>
+      <li><a href="contact">Contact</a></li>
+    </ul>
+    <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </nav>
+
+  <header class="hero page-hero">
+    <div class="hero-content">
+      <div class="hero-label">Blog</div>
+      <h1 class="hero-title">
+        <span class="line"><span>Writing on</span></span>
+        <span class="line"><span><em class="accent">security</em></span></span>
+      </h1>
+      <p class="hero-subtitle">Cybersecurity write-ups, research papers, technical notes, and personal stories.</p>
+    </div>
+  </header>
+
+  <section class="section section-alt">
+    <div class="section-header reveal">
+      <span class="section-label">Latest posts</span>
+      <h2 class="section-title">Recent <em>writing</em></h2>
+      <p class="section-desc">Connecting technical work with the experiences behind it.</p>
+    </div>
+    <div class="grid-2 stagger-children">
+      <article class="blog-card reveal" data-modal="blog-phishing">
+        <div class="blog-card-content">
+          <div class="blog-card-meta">
+            <span>Threat Awareness</span>
+            <span>Apr 2026</span>
+          </div>
+          <h3 class="blog-card-title">Security Training: Phishing Awareness</h3>
+          <p class="blog-card-excerpt">A practical cybersecurity awareness write-up focused on recognizing phishing attempts, reducing risk, and improving everyday security behavior. As part of Mastercard's Cybersecurity Virtual Experience on Forage, I had the opportunity to step into the role of a security analyst...</p>
+          <a href="#" class="blog-card-link">Read post →</a>
+        </div>
+      </article>
+      <article class="blog-card reveal" data-modal="blog-resilience">
+        <div class="blog-card-content">
+          <div class="blog-card-meta">
+            <span>Research</span>
+            <span>Mar 2026</span>
+          </div>
+          <h3 class="blog-card-title">Implementing Operational Cyber Resilience in the IT Sector</h3>
+          <p class="blog-card-excerpt">A research paper exploring operational cyber resilience through structured frameworks and practical IT-sector security considerations. The IT sector sits at the foundation of nearly every industry — making its resilience a matter of national importance...</p>
+          <a href="#" class="blog-card-link">Read post →</a>
+        </div>
+      </article>
+      <article class="blog-card reveal" data-modal="blog-athlete">
+        <div class="blog-card-content">
+          <div class="blog-card-meta">
+            <span>Personal Story</span>
+            <span>Jan 2025</span>
+          </div>
+          <h3 class="blog-card-title">My Journey as an Athlete</h3>
+          <p class="blog-card-excerpt">A personal story highlighting discipline, resilience, and the competitive mindset shaped through athletics and swimming. My sports journey began with skating, but in 2008, I discovered my true passion — swimming...</p>
+          <a href="#" class="blog-card-link">Read post →</a>
+        </div>
+      </article>
+      <article class="blog-card reveal" data-modal="blog-hello">
+        <div class="blog-card-content">
+          <div class="blog-card-meta">
+            <span>Introduction</span>
+            <span>Jan 2025</span>
+          </div>
+          <h3 class="blog-card-title">Hello there!</h3>
+          <p class="blog-card-excerpt">An introductory post offering a personal entry point into my background, interests, and professional direction. Welcome to my webpage! I'm Hemraj Patel from India, and I'm excited to share my journey, skills, and accomplishments with you...</p>
+          <a href="#" class="blog-card-link">Read post →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="lane-divider"></div>
+
+  <section class="section">
+    <div class="section-header center reveal">
+      <span class="section-label">Topics</span>
+      <h2 class="section-title">What I <em>write</em> about</h2>
+    </div>
+    <div class="grid-3 stagger-children">
+      <div class="card reveal text-center">
+        <div class="card-title">Cybersecurity</div>
+        <p class="card-text">Threat analysis, vulnerability research, and security operations insights.</p>
+      </div>
+      <div class="card reveal text-center">
+        <div class="card-title">AI Security</div>
+        <p class="card-text">Adversarial machine learning, LLM security, and AI-driven threat research.</p>
+      </div>
+      <div class="card reveal text-center">
+        <div class="card-title">Personal Growth</div>
+        <p class="card-text">Lessons from athletics, career transitions, and continuous learning.</p>
+      </div>
+    </div>
+  </section>
+
+<footer class="footer">
+    <div class="footer-content">
+      <div>
+        <div class="footer-brand">HEMRAJ</div>
+        <p class="footer-desc">Cybersecurity engineer focused on threat research, vulnerability management, and AI-driven security.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Explore</div>
+        <ul class="footer-links">
+          <li><a href="about">About</a></li>
+          <li><a href="experience">Experience</a></li>
+          <li><a href="projects">Projects</a></li>
+          <li><a href="blog">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Connect</div>
+        <ul class="footer-links">
+          <li><a href="https://www.linkedin.com/in/hemraj-patel/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <ul class="footer-links">
+          <li><a href="mailto:Hemraj@osiris.cyber.nyu.edu">Hemraj@osiris.cyber.nyu.edu</a></li>
+          <li>New York, NY</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">&copy; 2026 Hemraj Patel — From pool to protocol.</div>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/hemraj-patel/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/modal-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

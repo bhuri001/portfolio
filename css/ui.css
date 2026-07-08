@@ -1,0 +1,311 @@
+/* ============================================================
+   UI ADDITIONS — refined cursor + detail modals
+   Load AFTER css/style.css on every page:
+   <link rel="stylesheet" href="css/ui.css">
+   ============================================================ */
+
+:root {
+  --ui-accent: var(--accent, var(--aqua, #6fd8c6));
+  --ui-gold: var(--gold, #e8c07d);
+  --ui-surface: var(--surface, #0d1518);
+  --ui-border: rgba(111, 216, 198, 0.18);
+}
+
+/* ---------- CURSOR (air bubble + droplet trail) ----------
+   A single translucent bubble with a light-refraction highlight,
+   trailed by sinking droplets drawn on a canvas. Native cursor is
+   hidden on fine pointers; text fields keep the native caret. */
+.custom-cursor-on,
+.custom-cursor-on a,
+.custom-cursor-on button,
+.custom-cursor-on label,
+.custom-cursor-on .card,
+.custom-cursor-on .btn,
+.custom-cursor-on .tag,
+.custom-cursor-on .skill-item,
+.custom-cursor-on .blog-card,
+.custom-cursor-on .stat-item,
+.custom-cursor-on [data-modal] {
+  cursor: none;
+}
+.custom-cursor-on input,
+.custom-cursor-on textarea,
+.custom-cursor-on select {
+  cursor: text;
+}
+
+#cursor-trail-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  pointer-events: none;
+}
+
+.cursor-bubble {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  z-index: 99999;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(111, 216, 198, 0.65);
+  /* the specular glint that makes it read as an air bubble */
+  background:
+    radial-gradient(circle at 33% 28%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.18) 28%, transparent 44%),
+    radial-gradient(circle at 68% 74%, rgba(111, 216, 198, 0.18) 0%, transparent 55%);
+  box-shadow:
+    inset 0 -3px 6px rgba(111, 216, 198, 0.18),
+    0 0 14px rgba(111, 216, 198, 0.18);
+  will-change: transform, left, top;
+  transition: width 0.3s cubic-bezier(0.33, 1, 0.68, 1),
+    height 0.3s cubic-bezier(0.33, 1, 0.68, 1),
+    border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.25s ease;
+}
+
+/* Hovering something interactive: the bubble swells and catches gold light */
+.cursor-hover .cursor-bubble {
+  width: 34px;
+  height: 34px;
+  border-color: rgba(232, 192, 125, 0.85);
+  box-shadow:
+    inset 0 -4px 8px rgba(232, 192, 125, 0.22),
+    0 0 18px rgba(232, 192, 125, 0.28);
+}
+
+/* Pressing: the bubble compresses, like squeezing air */
+.cursor-down .cursor-bubble {
+  width: 15px;
+  height: 15px;
+  border-color: rgba(111, 216, 198, 0.9);
+}
+
+/* Over text fields: get out of the way.
+   !important so it wins over the JS-managed inline opacity. */
+.cursor-typing .cursor-bubble {
+  opacity: 0 !important;
+}
+
+/* ---------- CLICKABLE-CARD AFFORDANCE ---------- */
+[data-modal] {
+  cursor: pointer;
+}
+.card-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.1rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ui-accent);
+  opacity: 0.75;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+[data-modal]:hover .card-more {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* ---------- DETAIL MODAL ---------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(4, 10, 12, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-panel {
+  position: relative;
+  width: min(760px, 100%);
+  max-height: min(84vh, 900px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: linear-gradient(180deg, rgba(17, 28, 32, 0.98), rgba(9, 15, 18, 0.98));
+  border: 1px solid var(--ui-border);
+  border-radius: 18px;
+  padding: 2.6rem 2.6rem 2.2rem;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(111, 216, 198, 0.05) inset;
+  transform: translateY(22px) scale(0.97);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.3s ease;
+}
+.modal-backdrop.open .modal-panel {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* slim custom scrollbar inside the panel */
+.modal-panel::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-panel::-webkit-scrollbar-thumb {
+  background: rgba(111, 216, 198, 0.25);
+  border-radius: 4px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ui-border);
+  border-radius: 50%;
+  background: transparent;
+  color: rgba(230, 245, 242, 0.75);
+  font-size: 1rem;
+  line-height: 1;
+  transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+.modal-close:hover {
+  border-color: var(--ui-accent);
+  color: var(--ui-accent);
+  transform: rotate(90deg);
+}
+.modal-close:focus-visible {
+  outline: 2px solid var(--ui-accent);
+  outline-offset: 2px;
+}
+
+.modal-kicker {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ui-accent);
+  margin-bottom: 0.7rem;
+}
+.modal-kicker.gold {
+  color: var(--ui-gold);
+}
+
+.modal-title {
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+  line-height: 1.15;
+  margin: 0 0 0.4rem;
+  color: #eef8f5;
+}
+
+.modal-sub {
+  font-size: 0.92rem;
+  color: rgba(220, 238, 234, 0.55);
+  margin-bottom: 1.6rem;
+}
+
+.modal-body h4 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ui-gold);
+  margin: 1.7rem 0 0.6rem;
+}
+.modal-body p {
+  font-size: 0.97rem;
+  line-height: 1.75;
+  color: rgba(224, 240, 236, 0.82);
+  margin: 0 0 0.9rem;
+}
+.modal-body ul {
+  margin: 0 0 0.9rem;
+  padding-left: 1.15rem;
+}
+.modal-body li {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(224, 240, 236, 0.8);
+  margin-bottom: 0.45rem;
+}
+.modal-body li::marker {
+  color: var(--ui-accent);
+}
+.modal-body strong {
+  color: #eaf7f4;
+}
+
+.modal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(111, 216, 198, 0.12);
+}
+.modal-tags .tag {
+  font-size: 0.72rem;
+  padding: 0.32rem 0.75rem;
+  border: 1px solid var(--ui-border);
+  border-radius: 999px;
+  color: rgba(220, 240, 236, 0.8);
+}
+
+.modal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+.modal-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.6rem 1.15rem;
+  border-radius: 999px;
+  border: 1px solid var(--ui-accent);
+  color: var(--ui-accent);
+  text-decoration: none;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.modal-links a:hover {
+  background: var(--ui-accent);
+  color: #06110f;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .modal-backdrop {
+    padding: 0.9rem;
+    align-items: flex-end;
+  }
+  .modal-panel {
+    padding: 2rem 1.4rem 1.6rem;
+    max-height: 88vh;
+    border-radius: 16px 16px 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-backdrop,
+  .modal-panel,
+  .cursor-dot,
+  .cursor-ring,
+  .modal-close {
+    transition: none;
+  }
+}
