@@ -292,14 +292,16 @@ window.MODAL_DATA = {
     sections: [
       {
         li: [
-          'Researching AI-driven cyber threats and adversarial machine learning models at the NYU Osiris Lab.',
-          'Focus areas: data integrity, model poisoning, and system trustworthiness in cloud and emerging AI systems.',
-          'Building the Package Hallucination Detection System, benchmarking hallucination rates across GPT-4, Gemini, and Cohere.',
-          'Working in Python and TensorFlow across LLM supply chain security experiments.'
+          'Conducted advanced research on AI-driven cyber threats and adversarial ML models at the NYU Osiris Lab, assessing risks to data integrity, model poisoning, and system trustworthiness.',
+          'Designed risk-based mitigation strategies aligned with NIST CSF and ISO 27001 standards.',
+          'Collaborated with faculty and cybersecurity leaders to align university policies with ISO 27001, NIST CSF 2.0, and GDPR.',
+          'Developed and delivered hands-on cybersecurity workshops covering incident response, data protection, and phishing awareness.',
+          'Automated security workflow integrations using Python and Microsoft 365 APIs.',
+          'Building the Package Hallucination Detection System, benchmarking hallucination rates across GPT-4, Gemini, and Cohere.'
         ]
       }
     ],
-    tags: ['AI Threat Research', 'Adversarial ML', 'LLM Security', 'Python', 'TensorFlow']
+    tags: ['AI Threat Research', 'Adversarial ML', 'LLM Security', 'NIST CSF', 'ISO 27001', 'Python', 'TensorFlow']
   },
 
   'exp-nyu-admin': {
@@ -309,9 +311,12 @@ window.MODAL_DATA = {
     sections: [
       {
         li: [
-          'Managed Microsoft server administration and user account access for the NYU Economics Department.',
+          'Managed Microsoft servers for the NYU Economics Department, with user account and access administration.',
           'Handled system troubleshooting, Active Directory, Group Policy, and Azure AD administration.',
-          'Maintained CMS/WordPress websites and secure faculty webpages.'
+          'Maintained and updated the department’s official website and faculty webpages using CMS and WordPress.',
+          'Created and managed personal webpages for professors, integrating research, publications, and contact information.',
+          'Handled reimbursement requests through university systems and coordinated departmental events and IT logistics.',
+          'Collaborated with NYU central IT teams to support system integration, updates, and compliance.'
         ]
       }
     ],
@@ -325,31 +330,33 @@ window.MODAL_DATA = {
     sections: [
       {
         li: [
-          'Deployed and managed <strong>Nessus and OpenVAS across 300+ endpoints</strong>.',
-          'Remediated <strong>500+ vulnerabilities</strong>, contributing to a <strong>40% reduction in high-severity risks</strong>.',
-          'Built Python-based automation for patch management and CVE ingestion.',
-          'Integrated scan results into Splunk dashboards and MITRE ATT&CK-aligned workflows.'
+          'Deployed and managed <strong>Nessus and OpenVAS across 300+ endpoints</strong>, remediating <strong>500+ vulnerabilities</strong> and contributing to a <strong>40% reduction in high-severity risks</strong>.',
+          'Designed Python-based automation for patch management and CVE ingestion, integrating results into Splunk dashboards and MITRE ATT&CK-aligned workflows.',
+          'Correlated vulnerability intelligence feeds with internal security data to improve threat detection.',
+          'Built containerized security workflows with Docker, automating packet-capture parsing using Zeek.',
+          'Collaborated with IT teams to optimize firewall rules, system hardening, and CI/CD security pipelines.'
         ]
       }
     ],
-    tags: ['Nessus', 'OpenVAS', 'Python', 'Splunk', 'MITRE ATT&CK', 'Patch Management', 'Linux']
+    tags: ['Nessus', 'OpenVAS', 'Python', 'Splunk', 'MITRE ATT&CK', 'Docker', 'Zeek', 'Linux']
   },
 
   'exp-techdefence': {
     kicker: 'Experience',
-    title: 'Security Analyst — TechDefence',
+    title: 'Security Analyst — TechDefenceLabs Solution Pvt. Ltd.',
     sub: 'May 2022 — Apr 2023 · Internship · Ahmedabad, GJ, India',
     sections: [
       {
         li: [
-          'Conducted vulnerability assessments and penetration tests using Burp Suite, Metasploit, and OWASP ZAP.',
-          'Identified and helped remediate <strong>100+ application vulnerabilities</strong>.',
-          'Monitored SIEM alerts in Splunk and ELK and automated alert correlation.',
-          'Reduced false positives by <strong>28%</strong>.'
+          'Conducted vulnerability assessments and penetration tests (VA/PT) using Burp Suite, Metasploit, and OWASP ZAP, identifying and helping remediate <strong>100+ application vulnerabilities</strong>.',
+          'Monitored and analyzed SIEM alerts in Splunk and ELK, automating correlation and integrating forensic evidence — reducing false positives by <strong>28%</strong>.',
+          'Supported SOC operations with threat monitoring, intelligence enrichment, and incident reporting.',
+          'Performed compliance gap analyses and control effectiveness evaluations.',
+          'Standardized vulnerability remediation workflows across SOC and dev teams.'
         ]
       }
     ],
-    tags: ['Burp Suite', 'Metasploit', 'OWASP ZAP', 'Splunk', 'ELK', 'SIEM', 'Pentesting']
+    tags: ['Burp Suite', 'Metasploit', 'OWASP ZAP', 'Splunk', 'ELK', 'SIEM', 'Pentesting', 'SOC']
   },
 
   /* ---------------- ATHLETICS ---------------- */
@@ -407,10 +414,17 @@ window.MODAL_DATA = {
 
   'cert-leetcode': {
     kicker: 'Certification',
-    title: 'Career Hub LeetCode Bootcamp',
+    title: 'Career Hub LeetCode Bootcamp Badge',
     sub: 'NYU Tandon School of Engineering · Jan 2026',
-    sections: [{ p: ['Intensive problem-solving bootcamp covering data structures, algorithms, and technical interview preparation.'] }],
-    tags: ['Algorithms', 'Data Structures', 'Interview Prep']
+    sections: [
+      {
+        p: [
+          'The LeetCode Bootcamp is a <strong>9-week instructor-led bootcamp</strong> intended to assist Tandon students in preparing for technical interviews related to software engineering. The instructor conducts two 2-hour teaching sessions each week, teaching the theory of relevant topics, approaches to solving problems, and how to explain the thought process in technical interviews.',
+          'Participants also work on group projects to create software engineering tools, websites, and visualizations that showcase what they learn in the bootcamp and add experience to their resume.'
+        ]
+      }
+    ],
+    tags: ['Algorithms', 'Data Structures', 'Interview Prep', 'Software Engineering']
   },
 
   'cert-security-plus': {
