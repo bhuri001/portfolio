@@ -213,6 +213,18 @@
   margin-bottom: 1.6rem;
 }
 
+/* cover image inside the pop-up (blogs, projects, …) */
+.modal-media {
+  margin: 0 0 1.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--ui-border);
+}
+.modal-media img {
+  width: 100%;
+  display: block;
+}
+
 .modal-body h4 {
   font-size: 0.8rem;
   font-weight: 700;

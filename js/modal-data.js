@@ -326,9 +326,8 @@ window.MODAL_DATA = {
       }
     ],
     tags: ['Swimming', 'Discipline', 'Resilience', 'Competitive Mindset'],
-    links: [
-      { label: 'Read the full story', href: 'https://wp.nyu.edu/hemraj_patel/my-journey-as-an-athlete/' }
-    ]
+    img: 'media/blog/athlete-journey.jpg',
+    imgAlt: 'Hemraj Patel competing in swimming'
   },
 
   /* ---------------- CERTIFICATIONS ---------------- */
@@ -339,7 +338,7 @@ window.MODAL_DATA = {
     sub: 'Mastercard / Forage · Apr 2026',
     sections: [{ p: ['Stepped into the role of a security analyst on Mastercard\u2019s Security Awareness Team \u2014 identifying phishing threats and designing security awareness training for internal teams.'] }],
     tags: ['Phishing Analysis', 'Security Awareness'],
-    links: [{ label: 'Related blog post', href: 'https://wp.nyu.edu/hemraj_patel/security-training-phishing-awareness/' }]
+    links: [{ label: 'Phishing awareness presentation (PDF)', href: 'media/Phishing-Awareness.pdf' }]
   },
 
   'cert-leetcode': {
@@ -399,51 +398,104 @@ window.MODAL_DATA = {
     kicker: 'Blog — Threat Awareness',
     title: 'Security Training: Phishing Awareness',
     sub: 'April 2026',
+    img: 'media/blog/phishing-awareness.jpg',
+    imgAlt: 'Mastercard Forage phishing awareness training',
     sections: [
       {
-        p: ['A practical cybersecurity awareness write-up focused on recognizing phishing attempts, reducing risk, and improving everyday security behavior. As part of Mastercard\u2019s Cybersecurity Virtual Experience on Forage, I stepped into the role of a security analyst on the Security Awareness Team \u2014 analyzing suspicious emails and designing training to help teams spot them.']
+        p: ['As part of Mastercard’s Cybersecurity Virtual Experience on Forage, I had the opportunity to step into the role of an analyst on Mastercard’s Security Awareness Team — one of the most human-facing functions in any cybersecurity organization. The experience reinforced something I deeply believe: technology alone cannot stop phishing. People are both the greatest vulnerability and the greatest line of defense.']
+      },
+      {
+        h: 'Anatomy of a phishing email',
+        p: ['Naive attempts are easy to catch — wrong domain, urgent tone, generic greetings. Sophisticated ones are different: personalized, timely (e.g., Black Friday rewards), professionally formatted, with masked URLs. Every defensive instinct the user relies on gets neutralized.']
+      },
+      {
+        h: 'Why it works',
+        p: ['Effective phishing exploits cognitive bias — familiarity lowers suspicion, plausible authority signals legitimacy, reward-based hooks drop the recipient’s guard entirely, and masked anchor text defeats the “hover to inspect” habit.']
+      },
+      {
+        h: 'Training design',
+        p: ['Rather than rules, I focused on pattern recognition using real examples. I addressed cognitive bias directly, identified high-risk teams (finance, HR, executive comms), and ended with five concrete behaviors:'],
+        li: [
+          'Verify the full sender address.',
+          'Hover before clicking.',
+          'Never share credentials via email.',
+          'Report suspicious emails.',
+          'Enable MFA.'
+        ]
+      },
+      {
+        h: 'Key takeaway',
+        p: ['Phishing succeeds when it feels normal. Security awareness isn’t a one-time event — it’s a continuous habit-building process. The human element is where modern cybersecurity must operate.']
       }
     ],
-    tags: ['Phishing', 'Security Awareness', 'Forage'],
-    links: [{ label: 'Read the full post', href: 'https://wp.nyu.edu/hemraj_patel/security-training-phishing-awareness/' }]
+    tags: ['Phishing', 'Security Awareness', 'Forage', 'Mastercard'],
+    links: [{ label: 'Presentation file (PDF)', href: 'media/Phishing-Awareness.pdf' }]
   },
 
   'blog-resilience': {
     kicker: 'Blog — Research',
     title: 'Implementing Operational Cyber Resilience in the IT Sector',
-    sub: 'March 2026',
+    sub: 'March 2026 · Short research paper',
+    img: 'media/blog/cyber-resilience.jpg',
+    imgAlt: 'Operational cyber resilience research paper',
     sections: [
       {
-        p: ['A short research paper exploring operational cyber resilience through the Operational Resilience Framework, with practical IT-sector security considerations. The IT sector sits at the foundation of nearly every industry \u2014 making its resilience a matter of national importance.']
+        p: [
+          'The IT sector sits at the foundation of nearly every industry — making its resilience a matter of national importance. High-profile incidents like the 2019 SolarWinds supply chain attack and the 2024 CrowdStrike outage, which alone cost Fortune 500 companies an estimated <strong>$5.4 billion</strong>, expose a hard truth: a single point of failure in a trusted vendor can cascade across thousands of organizations worldwide.',
+          'This paper applies the <strong>Operational Resilience Framework (ORF)</strong> to mid-sized IT organizations, using NIST SP 800-207 Zero Trust Architecture and the CISA Zero Trust Maturity Model as the technical and benchmarking backbone. True resilience, as defined by the Federal Reserve, is not just about preventing breaches — it’s about sustaining operations through them.'
+        ]
+      },
+      {
+        h: 'Four interconnected dimensions',
+        li: [
+          '<strong>People</strong> — security awareness and least-privilege identity management.',
+          '<strong>Process</strong> — Business Impact Assessments, incident response exercises, supply chain risk registers.',
+          '<strong>Technology</strong> — MFA, network segmentation, EDR, and SIEM platforms.',
+          '<strong>Organizational governance</strong> — executive sponsorship, vendor risk management, and cross-functional oversight.'
+        ]
+      },
+      {
+        p: ['The result is a structured, measurable, and continuously evolving resilience program — one that treats cybersecurity not as a one-time project, but as an organizational capability built to protect, detect, and defend across an ever-changing threat landscape.']
       }
     ],
-    tags: ['Cyber Resilience', 'Research Paper', 'Frameworks'],
-    links: [{ label: 'Read the full paper', href: 'https://wp.nyu.edu/hemraj_patel/short-research-paper-implementing-operational-cyber-resilience-in-the-it-sector-using-the-operational-resilience-framework/' }]
+    tags: ['Cyber Resilience', 'Research Paper', 'Zero Trust', 'NIST', 'CISA'],
+    links: [{ label: 'Read the full paper (PDF)', href: 'media/Hemraj_Patel_Final-Paper.pdf' }]
   },
 
   'blog-athlete': {
     kicker: 'Blog — Personal Story',
     title: 'My Journey as an Athlete',
     sub: 'January 2025',
+    img: 'media/blog/athlete-journey.jpg',
+    imgAlt: 'Hemraj Patel competing in swimming',
     sections: [
       {
-        p: ['A personal story about discipline, resilience, and the competitive mindset shaped through swimming: from discovering the sport in 2008 and competing at state level by 2010, to 200+ state medals, national medals, and a final national medal in 2023 after returning from the COVID pause.']
+        p: [
+          'My sports journey began with <strong>skating</strong>, but in 2008, I discovered my true passion — <strong>swimming</strong>. The transition was life-changing, and by 2010, I competed in my <strong>first state-level competition</strong>. The excitement and enthusiasm I felt fueled my determination, leading me to win my <strong>first state medal in 2011</strong>. Since then, I have continued to compete at the state level, accumulating <strong>over 200 state medals</strong> to date.',
+          'At the age of <strong>12</strong>, I stepped onto the <strong>national stage for the first time in 2014</strong>. It was an overwhelming experience, but I embraced the challenge and worked relentlessly to improve. My efforts paid off when I won my <strong>first national medal in 2016</strong>. With even more rigorous training, I secured my <strong>second national medal in 2019</strong>.',
+          'However, the COVID-19 pandemic forced me to <strong>pause my training for 1.5 years</strong>. Despite the setback, I was determined to make a comeback. My daily routine included <strong>8 hours of intense training</strong>, swimming <strong>7.5 miles (12 km)</strong>, and incorporating <strong>3 hours of strength and conditioning workouts</strong>. My perseverance led me to win my <strong>last national medal in 2023</strong>. This victory was bittersweet, as it marked the moment I decided to shift my focus toward <strong>academics and my professional career</strong>, officially stepping away from professional sports.',
+          'Yet, the <strong>champion inside me</strong> is still eager to compete. That’s why I am now striving to <strong>join New York University’s roster</strong>, hoping to once again experience the thrill of competition at the highest level.'
+        ]
       }
     ],
-    tags: ['Athletics', 'Swimming', 'Discipline'],
-    links: [{ label: 'Read the full story', href: 'https://wp.nyu.edu/hemraj_patel/my-journey-as-an-athlete/' }]
+    tags: ['Athletics', 'Swimming', 'Discipline', 'Resilience']
   },
 
   'blog-hello': {
     kicker: 'Blog — Introduction',
     title: 'Hello there!',
     sub: 'January 2025',
+    img: 'media/blog/hello-welcome.avif',
+    imgAlt: 'Welcome',
     sections: [
       {
-        p: ['An introductory post offering a personal entry point into my background, interests, and professional direction \u2014 my journey from India to NYU, and from the pool to cybersecurity.']
+        p: [
+          '<strong>Welcome to my webpage! I’m Hemraj Patel from India, and I’m excited to share my journey, skills, and accomplishments with you in a way that is both professional and personal.</strong> This webpage serves as a snapshot of who I am, highlighting my experiences, qualifications, and projects in a visually engaging format. It reflects my passion for design and my commitment to creating unique and impactful presentations. As I continue to grow and explore new areas, I’ll also be sharing blogs, so stay tuned!',
+          'I’m a cybersecurity professional, currently pursuing my master’s in cybersecurity at New York University, with a solid background in application security, network security, and digital forensics. I’ve worked with advanced threat detection, vulnerability analysis, and compliance frameworks like ISO 27001, HIPAA, and NIST. My expertise includes using tools like Snort, Nessus, and Zeek for incident response, intrusion detection, and risk management. With experience in both research and industry roles, I’ve focused on vulnerability assessments, penetration testing, SIEM analysis, and creating cybersecurity study materials. I’m also proficient in Python, Flask, and Bash scripting, and have led projects in designing secure systems. In addition to my professional journey, I’m a national medalist swimmer, recognized for my teamwork and leadership skills.',
+          'Feel free to explore my work and accomplishments, and don’t hesitate to reach out if you’d like to connect or collaborate! My email is: <strong>hemraj@osiris.cyber.nyu.edu</strong>'
+        ]
       }
     ],
-    tags: ['Introduction', 'Background'],
-    links: [{ label: 'Read the full post', href: 'https://wp.nyu.edu/hemraj_patel/hello-world/' }]
+    tags: ['Introduction', 'Background']
   }
 };

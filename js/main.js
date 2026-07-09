@@ -1182,6 +1182,8 @@ document.addEventListener('DOMContentLoaded', () => {
      button) drift a few px instead of chasing the pointer around. */
   if (!isTouch && !reducedMotion) {
     document.querySelectorAll('.btn').forEach(btn => {
+      // submit buttons stay fixed — they scale up on hover via CSS instead
+      if (btn.type === 'submit') return;
       btn.addEventListener('mousemove', e => {
         const r = btn.getBoundingClientRect();
         const maxX = Math.min(10, r.width * 0.08);
@@ -1452,6 +1454,7 @@ function initModals() {
     '  <div class="modal-kicker"></div>' +
     '  <h3 class="modal-title" id="modal-title"></h3>' +
     '  <div class="modal-sub"></div>' +
+    '  <div class="modal-media"></div>' +
     '  <div class="modal-body"></div>' +
     '  <div class="modal-tags"></div>' +
     '  <div class="modal-links"></div>' +
@@ -1463,6 +1466,7 @@ function initModals() {
   const elKicker = backdrop.querySelector('.modal-kicker');
   const elTitle = backdrop.querySelector('.modal-title');
   const elSub = backdrop.querySelector('.modal-sub');
+  const elMedia = backdrop.querySelector('.modal-media');
   const elBody = backdrop.querySelector('.modal-body');
   const elTags = backdrop.querySelector('.modal-tags');
   const elLinks = backdrop.querySelector('.modal-links');
@@ -1478,6 +1482,11 @@ function initModals() {
     elTitle.textContent = entry.title || '';
     elSub.textContent = entry.sub || '';
     elSub.style.display = entry.sub ? '' : 'none';
+
+    elMedia.innerHTML = entry.img
+      ? '<img src="' + entry.img + '" alt="' + esc(entry.imgAlt || entry.title || '') + '" loading="lazy">'
+      : '';
+    elMedia.style.display = entry.img ? '' : 'none';
 
     let html = '';
     (entry.sections || []).forEach(sec => {

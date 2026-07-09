@@ -418,6 +418,9 @@ img { max-width: 100%; display: block; }
 .btn-outline:hover { border-color: var(--aqua); color: var(--aqua); }
 .btn .arrow { transition: transform 0.35s var(--ease-out); }
 .btn:hover .arrow { transform: translateX(4px); }
+/* Submit buttons stay put and grow slightly on hover
+   (they are excluded from the magnetic pull in main.js) */
+button.btn[type="submit"]:hover { transform: scale(1.02); }
 
 /* ============ SECTIONS ============ */
 .section {
@@ -965,10 +968,8 @@ textarea.form-input { min-height: 140px; resize: vertical; }
    clickable cards that don't carry a .card-more span in the HTML. */
 .card[data-modal],
 .blog-card[data-modal] { position: relative; }
-.card[data-modal]:not(:has(.card-more)),
-.blog-card[data-modal] { padding-bottom: 3.1rem; }
-.card[data-modal]:not(:has(.card-more))::after,
-.blog-card[data-modal]::after {
+.card[data-modal]:not(:has(.card-more)) { padding-bottom: 3.1rem; }
+.card[data-modal]:not(:has(.card-more))::after {
   content: 'View details \2197';
   position: absolute;
   right: 1.5rem; bottom: 1.3rem;
@@ -984,13 +985,23 @@ textarea.form-input { min-height: 140px; resize: vertical; }
   z-index: 2;
 }
 .card[data-modal]:not(:has(.card-more)):hover::after,
-.card[data-modal]:not(:has(.card-more)):focus-visible::after,
-.blog-card[data-modal]:hover::after,
-.blog-card[data-modal]:focus-visible::after {
+.card[data-modal]:not(:has(.card-more)):focus-visible::after {
   opacity: 1; transform: translateX(-3px);
 }
-.blog-card[data-modal] .blog-card-content { padding-bottom: 0.4rem; }
 .blog-card[data-modal] .blog-card-link { pointer-events: none; } /* the card itself opens the pop-up */
+
+/* Blog cover images — shown on the card and again inside the pop-up */
+.blog-card-media {
+  height: 190px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--hairline);
+}
+.blog-card-media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+.blog-card:hover .blog-card-media img { transform: scale(1.05); }
 /* Timeline entries: an always-visible "View details" chip so visitors
    know each role opens into a full pop-up */
 .timeline-item[data-modal] .card-more {
