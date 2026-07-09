@@ -78,6 +78,8 @@
       </div>
       <div class="reveal" style="--d: 0.15s;">
         <form id="contact-form" class="card" style="padding: 2.5rem;">
+          <!-- honeypot: invisible to humans, bots fill it and get silently ignored -->
+          <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0;">
           <div class="form-group">
             <label class="form-label" for="name">Name</label>
             <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required>

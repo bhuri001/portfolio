@@ -1177,13 +1177,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ============ MAGNETIC BUTTONS ============ */
+  /* ============ MAGNETIC BUTTONS ============
+     The pull is capped so wide buttons (like the full-width Send
+     button) drift a few px instead of chasing the pointer around. */
   if (!isTouch && !reducedMotion) {
     document.querySelectorAll('.btn').forEach(btn => {
       btn.addEventListener('mousemove', e => {
         const r = btn.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width / 2) * 0.18;
-        const y = (e.clientY - r.top - r.height / 2) * 0.28;
+        const maxX = Math.min(10, r.width * 0.08);
+        const maxY = 7;
+        const x = Math.max(-maxX, Math.min(maxX, (e.clientX - r.left - r.width / 2) * 0.18));
+        const y = Math.max(-maxY, Math.min(maxY, (e.clientY - r.top - r.height / 2) * 0.28));
         btn.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)';
       });
       btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
@@ -1195,25 +1199,98 @@ document.addEventListener('DOMContentLoaded', () => {
     track.innerHTML += track.innerHTML;
   });
 
-  /* ============ CONTACT FORM ============ */
+  /* ============ CONTACT FORM — sends to a private Google Sheet ============
+     CONTACT_ENDPOINT is the Google Apps Script web-app URL (ends in /exec).
+     Each submission appends a row to the sheet and emails an alert.
+     While the endpoint is empty, the form falls back to a mailto: draft. */
+  const CONTACT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxHk5grd4mDCi_9Q0HKVoQFFxxVBX0AjBbPUyFJjGPNaoIXavZRu0-itytPPKfpofyX/exec';
+
   const form = document.getElementById('contact-form');
   if (form) {
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const name = encodeURIComponent(form.name.value.trim());
-      const subject = encodeURIComponent(form.subject.value.trim() || 'Hello from your portfolio');
-      const message = encodeURIComponent(form.message.value.trim());
-      const email = encodeURIComponent(form.email.value.trim());
-      const body = message + '%0D%0A%0D%0A— ' + name + ' (' + email + ')';
-      window.location.href = 'mailto:Hemraj@osiris.cyber.nyu.edu?subject=' + subject + '&body=' + body;
+    const formNote = msg => {
       let note = form.querySelector('.form-note');
       if (!note) {
         note = document.createElement('p');
         note.className = 'form-note';
         form.appendChild(note);
       }
-      note.textContent = 'Opening your email client…';
-      note.classList.add('success');
+      note.textContent = msg;
+      return note;
+    };
+
+    // The thank-you box — reuses the site's modal styling
+    let thanksBox = null;
+    function showThanks() {
+      if (!thanksBox) {
+        thanksBox = document.createElement('div');
+        thanksBox.className = 'modal-backdrop';
+        thanksBox.innerHTML =
+          '<div class="modal-panel" role="dialog" aria-modal="true" aria-label="Message sent" tabindex="-1" style="max-width: 440px; text-align: center;">' +
+          '<button class="modal-close" aria-label="Close">&#10005;</button>' +
+          '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 64px; height: 64px; margin: 0.4rem auto 1rem; display: block;">' +
+          '<circle cx="32" cy="32" r="29" stroke="#6fd8c6" stroke-width="2.5" fill="rgba(111,216,198,0.08)"/>' +
+          '<path d="M20 33 L28.5 41.5 L44 25" stroke="#d8b26c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>' +
+          '</svg>' +
+          '<h3 class="modal-title">Thank you!</h3>' +
+          '<p style="color: var(--mist); font-size: 0.97rem; line-height: 1.65; margin-top: 0.5rem;">Your message is on its way &mdash; I&rsquo;ll read it and get back to you soon.</p>' +
+          '</div>';
+        document.body.appendChild(thanksBox);
+        const closeThanks = () => {
+          thanksBox.classList.remove('open');
+          document.body.classList.remove('modal-open');
+        };
+        thanksBox.querySelector('.modal-close').addEventListener('click', closeThanks);
+        thanksBox.addEventListener('click', e => { if (e.target === thanksBox) closeThanks(); });
+        document.addEventListener('keydown', e => {
+          if (e.key === 'Escape' && thanksBox.classList.contains('open')) closeThanks();
+        });
+      }
+      thanksBox.classList.add('open');
+      document.body.classList.add('modal-open');
+      thanksBox.querySelector('.modal-panel').focus();
+    }
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const fields = {
+        name: form.elements.name.value.trim(),
+        email: form.elements.email.value.trim(),
+        subject: form.elements.subject.value.trim(),
+        message: form.elements.message.value.trim(),
+        company: form.elements.company ? form.elements.company.value : ''  // honeypot
+      };
+
+      // No endpoint configured yet — fall back to a plain email draft
+      if (!CONTACT_ENDPOINT) {
+        const body = encodeURIComponent(fields.message) + '%0D%0A%0D%0A— ' +
+          encodeURIComponent(fields.name) + ' (' + encodeURIComponent(fields.email) + ')';
+        window.location.href = 'mailto:Hemraj@osiris.cyber.nyu.edu?subject=' +
+          encodeURIComponent(fields.subject || 'Hello from your portfolio') + '&body=' + body;
+        formNote('Opening your email client…').classList.add('success');
+        return;
+      }
+
+      const btn = form.querySelector('button[type="submit"]');
+      const original = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = 'Sending…';
+
+      fetch(CONTACT_ENDPOINT, { method: 'POST', body: JSON.stringify(fields) })
+        .then(r => r.json())
+        .then(res => {
+          if (res.result !== 'success') throw new Error(res.message || 'send failed');
+          form.reset();
+          const note = form.querySelector('.form-note');
+          if (note) note.remove();
+          showThanks();
+        })
+        .catch(() => {
+          formNote('Something went wrong — please email me directly at Hemraj@osiris.cyber.nyu.edu');
+        })
+        .finally(() => {
+          btn.disabled = false;
+          btn.innerHTML = original;
+        });
     });
   }
 
