@@ -1495,6 +1495,11 @@ function initModals() {
       if (sec.li && sec.li.length) {
         html += '<ul>' + sec.li.map(li => '<li>' + li + '</li>').join('') + '</ul>';
       }
+      // inline figures inside the write-up, each with an optional caption
+      (sec.imgs || []).forEach(im => {
+        html += '<figure class="modal-fig"><img src="' + im.src + '" alt="' + esc(im.alt || '') + '" loading="lazy">' +
+          (im.cap ? '<figcaption>' + esc(im.cap) + '</figcaption>' : '') + '</figure>';
+      });
     });
     elBody.innerHTML = html;
 

@@ -225,6 +225,23 @@
   display: block;
 }
 
+/* inline figures inside write-ups, with optional captions */
+.modal-fig {
+  margin: 1.1rem 0 1.3rem;
+}
+.modal-fig img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid var(--ui-border);
+}
+.modal-fig figcaption {
+  font-size: 0.78rem;
+  color: rgba(220, 238, 234, 0.5);
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
 .modal-body h4 {
   font-size: 0.8rem;
   font-weight: 700;
