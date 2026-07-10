@@ -196,10 +196,12 @@ img { max-width: 100%; display: block; }
   transition: background 0.4s var(--ease-soft), border-color 0.4s, padding 0.4s;
   border-bottom: 1px solid transparent;
 }
+/* NOTE: no backdrop-filter here — a filter on the navbar would make it
+   the containing block for the fixed mobile menu inside it, pinning the
+   full-screen overlay to the navbar's own box (menu "shifts up" bug).
+   The background is opaque anyway, so the blur was invisible. */
 .navbar.scrolled {
   background: var(--bg-top);
-  backdrop-filter: blur(14px) saturate(1.2);
-  -webkit-backdrop-filter: blur(14px) saturate(1.2);
   border-bottom-color: var(--line);
   padding-top: 0.8rem; padding-bottom: 0.8rem;
 }
@@ -253,7 +255,6 @@ img { max-width: 100%; display: block; }
   .nav-links {
     position: fixed; inset: 0;
     background: linear-gradient(to bottom, var(--bg-top), var(--bg-bottom));
-    backdrop-filter: blur(20px);
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
