@@ -1073,7 +1073,7 @@ textarea.form-input { min-height: 140px; resize: vertical; }
   transform-origin: left;
 }
 .toast.show .toast-bar::after {
-  animation: toastCountdown var(--toast-life, 9s) linear forwards;
+  animation: toastCountdown var(--toast-life, 6s) linear forwards;
 }
 @keyframes toastCountdown { to { transform: scaleX(0); } }
 @media (max-width: 600px) {

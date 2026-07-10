@@ -1419,7 +1419,7 @@ document.addEventListener('DOMContentLoaded', () => {
       '<div class="toast-bar" aria-hidden="true"></div>';
     document.body.appendChild(toast);
 
-    const TOAST_LIFE = 9000;
+    const TOAST_LIFE = 6000;
     toast.style.setProperty('--toast-life', TOAST_LIFE + 'ms');
     let toastHideT;
     function hideToast() {
