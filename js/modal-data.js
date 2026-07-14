@@ -271,10 +271,10 @@ window.MODAL_DATA = {
   'research-focus': {
     kicker: 'Research — NYU Osiris Lab',
     title: 'Adversarial ML & LLM Supply Chain Security',
-    sub: 'Current research focus',
+    sub: 'Graduate research — NYU Osiris Lab, 2024–2026',
     sections: [
       {
-        p: ['My work at the NYU Osiris Lab explores how adversarial techniques can compromise machine learning models, with particular emphasis on <strong>LLM supply chain vulnerabilities</strong>, data integrity, and model poisoning.']
+        p: ['My graduate research at the NYU Osiris Lab explored how adversarial techniques can compromise machine learning models, with particular emphasis on <strong>LLM supply chain vulnerabilities</strong>, data integrity, and model poisoning.']
       },
       {
         p: ['The Package Hallucination Detection System is the foundational tool of this research: it identifies when LLMs suggest non-existent dependencies — a vector that becomes a real supply chain attack the moment a malicious actor registers a hallucinated package name.']
@@ -297,7 +297,7 @@ window.MODAL_DATA = {
           'Collaborated with faculty and cybersecurity leaders to align university policies with ISO 27001, NIST CSF 2.0, and GDPR.',
           'Developed and delivered hands-on cybersecurity workshops covering incident response, data protection, and phishing awareness.',
           'Automated security workflow integrations using Python and Microsoft 365 APIs.',
-          'Building the Package Hallucination Detection System, benchmarking hallucination rates across GPT-4, Gemini, and Cohere.'
+          'Built the Package Hallucination Detection System, benchmarking hallucination rates across GPT-4, Gemini, and Cohere.'
         ]
       }
     ],
